@@ -9,6 +9,7 @@ import kz.sdp.delivery.planning.StrategyComparison;
 import kz.sdp.delivery.planning.StrategySelector;
 import kz.sdp.delivery.strategy.BalancedRouteStrategy;
 import kz.sdp.delivery.strategy.CheapestRouteStrategy;
+import kz.sdp.delivery.strategy.DistanceFirstStrategy;
 import kz.sdp.delivery.strategy.EcoFriendlyRouteStrategy;
 import kz.sdp.delivery.strategy.FastestRouteStrategy;
 import kz.sdp.delivery.strategy.RouteStrategy;
@@ -46,7 +47,7 @@ public final class DeliveryApplication {
 
     public static List<RouteStrategy> availableStrategies() {
         return List.of(new FastestRouteStrategy(), new CheapestRouteStrategy(),
-                new EcoFriendlyRouteStrategy(), new BalancedRouteStrategy());
+                new EcoFriendlyRouteStrategy(), new BalancedRouteStrategy(), new DistanceFirstStrategy());
     }
 
     private static void runtimeSwitching() {
