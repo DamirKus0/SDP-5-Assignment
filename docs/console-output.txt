@@ -1,0 +1,114 @@
+SMART DELIVERY AND ROUTE OPTIMIZATION ENGINE
+Candidate routes: 8
+
+RUNTIME SWITCHING: one planner, three strategy replacements
+Request: STANDARD | budget 6000.00 KZT | deadline 90 min | eco preferred false
+Fastest -> R1-Express | time 28 min | cost 4270.00 KZT | distance 18.00 km | CO2 4.80 kg | score 28.0000
+  Reason: Minimum effective delivery time among feasible routes; ties use route ID.
+  Reason: Base time 25 + traffic 2 + weather 1 = 28 min
+  Rejected R7-Tunnel: Route is unavailable
+Cheapest -> R4-Economy | time 50 min | cost 1710.00 KZT | distance 24.00 km | CO2 3.20 kg | score 1710.0000
+  Reason: Minimum total delivery cost among feasible routes; ties use route ID.
+  Reason: Base 700.00 + distance 24.00 km * 40.00 + priority surcharge 0.00 + fees 50.00 = 1710.00 KZT
+  Rejected R7-Tunnel: Route is unavailable
+Eco-friendly -> R3-Electric | time 42 min | cost 2700.00 KZT | distance 15.00 km | CO2 0.60 kg | score 1.0500
+  Reason: Minimum environmental proxy score among feasible routes; ties use route ID.
+  Reason: CO2 0.600 kg * 1.000 + distance 15.000 km * 0.030
+  Rejected R7-Tunnel: Route is unavailable
+Balanced -> R5-Avenue | time 34 min | cost 2440.00 KZT | distance 16.00 km | CO2 1.40 kg | score 0.2794
+  Reason: Minimum normalized weighted score over feasible routes; ties use route ID.
+  Reason: Normalization: (value - min) / (max - min); equal ranges contribute zero.
+  Reason: Time 0.2727 * 0.4000 + cost 0.2852 * 0.3000 + distance 0.4667 * 0.1000 + CO2 0.1905 * 0.2000
+  Rejected R7-Tunnel: Route is unavailable
+
+AUTOMATIC SELECTION: request rules select an algorithm
+Request: URGENT | budget 10000.00 KZT | deadline 35 min | eco preferred true
+Fastest -> R1-Express | time 28 min | cost 4770.00 KZT | distance 18.00 km | CO2 4.80 kg | score 28.0000
+  Reason: Minimum effective delivery time among feasible routes; ties use route ID.
+  Reason: Base time 25 + traffic 2 + weather 1 = 28 min
+  Rejected R2-City: Delivery deadline exceeded
+  Rejected R3-Electric: Delivery deadline exceeded
+  Rejected R4-Economy: Delivery deadline exceeded
+  Rejected R6-Local: Delivery deadline exceeded
+  Rejected R7-Tunnel: Route is unavailable
+  Rejected R8-Freight: Delivery deadline exceeded; Delivery priority is prohibited
+Request: ECONOMY | budget 2000.00 KZT | deadline 90 min | eco preferred false
+Cheapest -> R4-Economy | time 50 min | cost 1710.00 KZT | distance 24.00 km | CO2 3.20 kg | score 1710.0000
+  Reason: Minimum total delivery cost among feasible routes; ties use route ID.
+  Reason: Base 700.00 + distance 24.00 km * 40.00 + priority surcharge 0.00 + fees 50.00 = 1710.00 KZT
+  Rejected R1-Express: Budget exceeded
+  Rejected R2-City: Budget exceeded
+  Rejected R3-Electric: Budget exceeded
+  Rejected R5-Avenue: Budget exceeded
+  Rejected R6-Local: Budget exceeded
+  Rejected R7-Tunnel: Route is unavailable
+Request: ECO | budget 4000.00 KZT | deadline 60 min | eco preferred true
+Emission cap: 1.00 kg CO2
+Eco-friendly -> R3-Electric | time 42 min | cost 2700.00 KZT | distance 15.00 km | CO2 0.60 kg | score 1.0500
+  Reason: Minimum environmental proxy score among feasible routes; ties use route ID.
+  Reason: CO2 0.600 kg * 1.000 + distance 15.000 km * 0.030
+  Rejected R1-Express: Budget exceeded; Emission limit exceeded
+  Rejected R2-City: Emission limit exceeded
+  Rejected R4-Economy: Emission limit exceeded
+  Rejected R5-Avenue: Emission limit exceeded
+  Rejected R6-Local: Emission limit exceeded
+  Rejected R7-Tunnel: Route is unavailable
+  Rejected R8-Freight: Emission limit exceeded
+Request: STANDARD | budget 3000.00 KZT | deadline 45 min | eco preferred false
+Balanced -> R5-Avenue | time 34 min | cost 2440.00 KZT | distance 16.00 km | CO2 1.40 kg | score 0.3240
+  Reason: Minimum normalized weighted score over feasible routes; ties use route ID.
+  Reason: Normalization: (value - min) / (max - min); equal ranges contribute zero.
+  Reason: Time 0.0000 * 0.4000 + cost 0.7111 * 0.3000 + distance 0.6364 * 0.1000 + CO2 0.2353 * 0.2000
+  Rejected R1-Express: Budget exceeded
+  Rejected R4-Economy: Delivery deadline exceeded
+  Rejected R7-Tunnel: Route is unavailable
+
+DYNAMIC CONSTRAINTS: same Fastest algorithm, different budgets
+Request: STANDARD | budget 6000.00 KZT | deadline 90 min | eco preferred false
+Fastest -> R1-Express | time 28 min | cost 4270.00 KZT | distance 18.00 km | CO2 4.80 kg | score 28.0000
+  Reason: Minimum effective delivery time among feasible routes; ties use route ID.
+  Reason: Base time 25 + traffic 2 + weather 1 = 28 min
+  Rejected R7-Tunnel: Route is unavailable
+Request: STANDARD | budget 3000.00 KZT | deadline 90 min | eco preferred false
+Fastest -> R5-Avenue | time 34 min | cost 2440.00 KZT | distance 16.00 km | CO2 1.40 kg | score 34.0000
+  Reason: Minimum effective delivery time among feasible routes; ties use route ID.
+  Reason: Base time 30 + traffic 3 + weather 1 = 34 min
+  Rejected R1-Express: Budget exceeded
+  Rejected R7-Tunnel: Route is unavailable
+
+STRATEGY COMPARISON: identical request and candidates
+Request: STANDARD | budget 6000.00 KZT | deadline 90 min | eco preferred false
+Fastest -> R1-Express | time 28 min | cost 4270.00 KZT | distance 18.00 km | CO2 4.80 kg | score 28.0000
+  Reason: Minimum effective delivery time among feasible routes; ties use route ID.
+  Reason: Base time 25 + traffic 2 + weather 1 = 28 min
+  Rejected R7-Tunnel: Route is unavailable
+Cheapest -> R4-Economy | time 50 min | cost 1710.00 KZT | distance 24.00 km | CO2 3.20 kg | score 1710.0000
+  Reason: Minimum total delivery cost among feasible routes; ties use route ID.
+  Reason: Base 700.00 + distance 24.00 km * 40.00 + priority surcharge 0.00 + fees 50.00 = 1710.00 KZT
+  Rejected R7-Tunnel: Route is unavailable
+Eco-friendly -> R3-Electric | time 42 min | cost 2700.00 KZT | distance 15.00 km | CO2 0.60 kg | score 1.0500
+  Reason: Minimum environmental proxy score among feasible routes; ties use route ID.
+  Reason: CO2 0.600 kg * 1.000 + distance 15.000 km * 0.030
+  Rejected R7-Tunnel: Route is unavailable
+Balanced -> R5-Avenue | time 34 min | cost 2440.00 KZT | distance 16.00 km | CO2 1.40 kg | score 0.2794
+  Reason: Minimum normalized weighted score over feasible routes; ties use route ID.
+  Reason: Normalization: (value - min) / (max - min); equal ranges contribute zero.
+  Reason: Time 0.2727 * 0.4000 + cost 0.2852 * 0.3000 + distance 0.4667 * 0.1000 + CO2 0.1905 * 0.2000
+  Rejected R7-Tunnel: Route is unavailable
+Distance-first -> R6-Local | time 36 min | cost 2510.00 KZT | distance 9.00 km | CO2 2.50 kg | score 9.0000
+  Reason: Minimum distance among feasible routes; ties use route ID.
+  Reason: Selected distance: 9.0 km
+  Rejected R7-Tunnel: Route is unavailable
+
+EXPECTED FAILURES: explicit handling
+Empty candidates: Candidate route list is empty
+No feasible route: No route satisfies the delivery constraints
+  Rejected R1-Express: Budget exceeded; Delivery deadline exceeded
+  Rejected R2-City: Budget exceeded; Delivery deadline exceeded
+  Rejected R3-Electric: Budget exceeded; Delivery deadline exceeded
+  Rejected R4-Economy: Budget exceeded; Delivery deadline exceeded
+  Rejected R5-Avenue: Budget exceeded; Delivery deadline exceeded
+  Rejected R6-Local: Budget exceeded; Delivery deadline exceeded
+  Rejected R7-Tunnel: Route is unavailable; Budget exceeded; Delivery deadline exceeded
+  Rejected R8-Freight: Budget exceeded; Delivery deadline exceeded
+Invalid Balanced weights: Balanced weights must sum to 1.0 (tolerance 1e-9)

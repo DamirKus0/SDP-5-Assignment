@@ -1,0 +1,20 @@
+Verified 2026-10-28
+Command: ./mvnw clean verify
+Runtime: Microsoft OpenJDK 17.0.18
+Maven: 3.9.11
+Compiler release: 17
+JUnit Jupiter: 5.13.4
+
+kz.sdp.delivery.DomainValidationTest
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0
+kz.sdp.delivery.HardConstraintsTest
+Tests run: 20, Failures: 0, Errors: 0, Skipped: 0
+kz.sdp.delivery.PlanningIntegrationTest
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0
+kz.sdp.delivery.StrategyAlgorithmsTest
+Tests run: 23, Failures: 0, Errors: 0, Skipped: 0
+
+TOTAL: Tests run: 62, Failures: 0, Errors: 0, Skipped: 0
+BUILD SUCCESS
+
+Additional smoke checks: demo, compare, failures, help; invalid mode exits with status 2.

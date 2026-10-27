@@ -1,0 +1,40 @@
+sequenceDiagram
+    actor Client
+    participant S as StrategySelector
+    participant P as RoutePlanner
+    participant F as FastestRouteStrategy
+    participant C as RouteConstraints
+    participant M as RouteMetricsCalculator
+    participant D as RouteDecision
+
+    Client->>S: select(urgentRequest)
+    S-->>Client: FastestRouteStrategy
+    Client->>P: setStrategy(selectedStrategy)
+    Client->>P: plan(routes, urgentRequest)
+    P->>F: selectRoute(routes, urgentRequest)
+    Note over F: selectRoute() inherited<br/>from<br/>AbstractRouteStrategy
+    F->>C: evaluate(routes, urgentRequest)
+    alt Candidate list is empty
+        C--xF: NoSuitableRouteException
+        F--xP: propagate exception
+        P--xClient: propagate exception
+    else Candidate list is nonempty
+        loop Every candidate route
+            C->>M: calculate(route, urgentRequest)
+            M-->>C: RouteMetrics
+            C->>C: collect eligible route or rejection reasons
+        end
+        alt No feasible route
+            C--xF: NoSuitableRouteException(rejections)
+            F--xP: propagate exception
+            P--xClient: propagate exception
+        else Feasible routes exist
+            C-->>F: Evaluation(eligible, rejections)
+            F->>F: scoringFor(eligible)
+            F->>F: score each route, minimize score then route ID
+            F->>D: new RouteDecision(strategyName, winner, metrics, score, explanation, rejections)
+            D-->>F: decision
+            F-->>P: decision
+            P-->>Client: decision
+        end
+    end

@@ -1,0 +1,105 @@
+classDiagram
+    class RouteStrategy {
+        <<interface>>
+        +selectRoute(List~Route~, DeliveryRequest) RouteDecision
+        +getStrategyName() String
+    }
+    class RoutePlanner {
+        -RouteStrategy strategy
+        +RoutePlanner(RouteStrategy)
+        +setStrategy(RouteStrategy) void
+        +plan(List~Route~, DeliveryRequest) RouteDecision
+    }
+    class AbstractRouteStrategy {
+        <<abstract>>
+        -RouteConstraints constraints
+        +selectRoute(List~Route~, DeliveryRequest) RouteDecision
+        #scoringFor(List~EligibleRoute~) ScoringRule
+    }
+    class FastestRouteStrategy
+    class CheapestRouteStrategy
+    class EcoFriendlyRouteStrategy
+    class BalancedRouteStrategy
+    class DistanceFirstStrategy
+    class StrategySelector {
+        -Map strategies
+        +select(DeliveryRequest) RouteStrategy
+    }
+    class StrategyComparison {
+        -List~RouteStrategy~ strategies
+        +compare(List~Route~, DeliveryRequest) List~RouteDecision~
+    }
+    class RouteConstraints {
+        +evaluate(List~Route~, DeliveryRequest) Evaluation
+    }
+    class RouteMetricsCalculator {
+        +calculate(Route, DeliveryRequest) RouteMetrics
+    }
+    class Route {
+        <<record>>
+        +String id
+        +Location origin
+        +Location destination
+        +double distanceKm
+        +int estimatedMinutes
+        +double baseCost
+        +double carbonEmission
+        +int trafficDelayMinutes
+        +int weatherDelayMinutes
+        +double additionalFees
+        +boolean available
+        +Set prohibitedPriorities
+    }
+    class DeliveryRequest {
+        <<record>>
+        +DeliveryPriority priority
+        +double maxBudget
+        +int maxDeliveryMinutes
+        +boolean ecoPreferred
+        +double maxCarbonEmission
+        +Set prohibitedRouteIds
+    }
+    class Location {
+        <<record>>
+    }
+    class RouteDecision {
+        <<record>>
+        +String strategyName
+        +Route route
+        +RouteMetrics metrics
+        +double score
+        +List explanation
+        +List~RouteRejection~ rejections
+    }
+    class RouteMetrics {
+        <<record>>
+    }
+    class RouteRejection {
+        <<record>>
+    }
+    class NoSuitableRouteException {
+        +rejections() List~RouteRejection~
+    }
+
+    RoutePlanner o-- RouteStrategy : strategy
+    AbstractRouteStrategy ..|> RouteStrategy
+    FastestRouteStrategy --|> AbstractRouteStrategy
+    CheapestRouteStrategy --|> AbstractRouteStrategy
+    EcoFriendlyRouteStrategy --|> AbstractRouteStrategy
+    BalancedRouteStrategy --|> AbstractRouteStrategy
+    DistanceFirstStrategy --|> AbstractRouteStrategy
+    StrategySelector --> RouteStrategy : selects from mapping
+    StrategySelector ..> DeliveryRequest
+    StrategyComparison o-- RouteStrategy : executes registry
+    AbstractRouteStrategy *-- RouteConstraints
+    AbstractRouteStrategy ..> RouteDecision : returns
+    RouteConstraints ..> RouteMetricsCalculator : calculates metrics
+    RouteConstraints ..> Route : filters
+    RouteConstraints ..> DeliveryRequest : checks limits
+    RouteConstraints ..> NoSuitableRouteException : throws
+    RouteMetricsCalculator ..> RouteMetrics : creates
+    Route --> Location : origin and destination
+    RouteDecision --> Route
+    RouteDecision --> RouteMetrics
+    RouteDecision o-- RouteRejection
+    NoSuitableRouteException o-- RouteRejection
