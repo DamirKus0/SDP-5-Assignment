@@ -9,7 +9,6 @@ import kz.sdp.delivery.domain.Route;
 import kz.sdp.delivery.domain.RouteMetrics;
 import kz.sdp.delivery.domain.RouteRejection;
 
-/** Feasibility is independent of the optimization algorithm. */
 public final class RouteConstraints {
     public record EligibleRoute(Route route, RouteMetrics metrics) { }
 

@@ -3,7 +3,6 @@ package kz.sdp.delivery.domain;
 import java.util.Objects;
 import java.util.Set;
 
-/** All candidate routes for a planning call must describe the same delivery endpoints. */
 public record Route(
         String id,
         Location origin,

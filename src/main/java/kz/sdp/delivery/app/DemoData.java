@@ -7,7 +7,6 @@ import kz.sdp.delivery.domain.DeliveryRequest;
 import kz.sdp.delivery.domain.Location;
 import kz.sdp.delivery.domain.Route;
 
-/** Synthetic routes for one Almaty depot-to-hospital delivery. */
 public final class DemoData {
     private DemoData() { }
 

@@ -96,7 +96,6 @@ class StrategyAlgorithmsTest {
         RouteDecision decision = new BalancedRouteStrategy(.4, .3, .1, .2)
                 .selectRoute(balancedCandidates(), STANDARD);
 
-        // A is best in time/cost/distance and worst in emissions: 0 + 0 + 0 + .2.
         assertEquals("A", decision.route().id());
         assertEquals(.2, decision.score(), 1e-12);
     }
@@ -106,7 +105,6 @@ class StrategyAlgorithmsTest {
         RouteDecision decision = new BalancedRouteStrategy(.1, .05, .05, .8)
                 .selectRoute(balancedCandidates(), STANDARD);
 
-        // C is worst in time/cost/distance and best in emissions: .1 + .05 + .05 + 0.
         assertEquals("C", decision.route().id());
         assertEquals(.2, decision.score(), 1e-12);
     }

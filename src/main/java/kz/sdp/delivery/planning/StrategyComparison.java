@@ -7,7 +7,6 @@ import kz.sdp.delivery.domain.Route;
 import kz.sdp.delivery.domain.RouteDecision;
 import kz.sdp.delivery.strategy.RouteStrategy;
 
-/** Runs an injected registry of strategies against exactly the same input. */
 public final class StrategyComparison {
     private final List<RouteStrategy> strategies;
 

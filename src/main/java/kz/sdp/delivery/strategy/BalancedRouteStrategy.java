@@ -27,7 +27,6 @@ public final class BalancedRouteStrategy extends AbstractRouteStrategy {
         if (!Double.isFinite(sum) || Math.abs(sum - 1.0) > WEIGHT_TOLERANCE) {
             throw new IllegalArgumentException("Balanced weights must sum to 1.0 (tolerance 1e-9)");
         }
-        // Canonicalize a valid floating-point sum so scores remain on the same scale.
         this.timeWeight = timeWeight / sum;
         this.costWeight = costWeight / sum;
         this.distanceWeight = distanceWeight / sum;

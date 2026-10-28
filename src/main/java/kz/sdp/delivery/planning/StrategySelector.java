@@ -11,7 +11,6 @@ import kz.sdp.delivery.strategy.EcoFriendlyRouteStrategy;
 import kz.sdp.delivery.strategy.FastestRouteStrategy;
 import kz.sdp.delivery.strategy.RouteStrategy;
 
-/** Chooses which algorithm to use; the strategy determines how to rank routes. */
 public final class StrategySelector {
     private final Map<DeliveryPriority, RouteStrategy> strategies;
 
@@ -32,7 +31,6 @@ public final class StrategySelector {
 
     public RouteStrategy select(DeliveryRequest request) {
         Objects.requireNonNull(request, "Delivery request is required");
-        // Urgent medical deliveries retain their time priority even with an eco preference.
         DeliveryPriority key = request.priority() == DeliveryPriority.URGENT
                 ? DeliveryPriority.URGENT
                 : request.ecoPreferred() ? DeliveryPriority.ECO : request.priority();

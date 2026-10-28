@@ -1,6 +1,5 @@
 package kz.sdp.delivery.domain;
 
-/** Shared validation for numeric domain values. */
 public final class Checks {
     private Checks() { }
 

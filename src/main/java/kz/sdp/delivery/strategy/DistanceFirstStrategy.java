@@ -3,7 +3,6 @@ package kz.sdp.delivery.strategy;
 import java.util.List;
 import kz.sdp.delivery.routing.RouteConstraints.EligibleRoute;
 
-/** Fifth algorithm, introduced after the original four-strategy application worked. */
 public final class DistanceFirstStrategy extends AbstractRouteStrategy {
     @Override
     public String getStrategyName() {
